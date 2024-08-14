@@ -24,7 +24,13 @@ export class User {
     @Column({ type: "text", nullable: true })
     description: string;
 
-    @Column({ type: "json", nullable: true })
+    @Column({
+        type: "json",
+        default: {
+            theme: "light",
+            notifications: true,
+        },
+    })
     configurations: JSON;
 
     @OneToMany(() => Message, (message) => message.sender)

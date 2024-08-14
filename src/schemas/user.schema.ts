@@ -1,8 +1,8 @@
 import z from "zod";
 
 const configurationOptions = z.object({
-    theme: z.string().optional().default("light"),
-    notifications: z.boolean().optional().default(true),
+    theme: z.string().optional(),
+    notifications: z.boolean().optional(),
 });
 
 const userSchema = z.object({

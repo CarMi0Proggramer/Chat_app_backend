@@ -1,12 +1,13 @@
 import express from "express";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
 import { AppDataSource } from "./data-source.js";
 import { corsMiddleware } from "./middlewares/cors.js";
-import dotenv from "dotenv";
 import { verifyUserToken } from "./middlewares/verify_user_token.js";
 import usersRouter from "./routes/users.js";
-dotenv.config();
+import authRouter from "./routes/auth.js";
 
+dotenv.config();
 AppDataSource.initialize()
     .then(() => {
         console.log("Database connected");
@@ -25,6 +26,7 @@ app.use(corsMiddleware());
 app.use(cookieParser());
 app.use(verifyUserToken);
 
+app.use("/auth", authRouter);
 app.use("/users", usersRouter);
 
 app.listen(port, () => {
