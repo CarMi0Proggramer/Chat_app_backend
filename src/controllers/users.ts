@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import UserModel from "../models/user.js";
 import { validatePartialUser } from "../schemas/user.schema.js";
+import { extractUserData } from "../utils/user_helpers.js";
 
 export default class UserController {
     static async update(req: Request, res: Response) {
@@ -20,16 +21,9 @@ export default class UserController {
                 return res.status(404).json({ message: "User not found" });
             }
 
-            res.json({
-                name: updatedUser.name,
-                email: updatedUser.email,
-                configurations: updatedUser.configurations,
-                description: updatedUser.description,
-                sentMessages: updatedUser.sentMessages,
-                receivedMessages: updatedUser.receivedMessages,
-            });
+            const userData = extractUserData(updatedUser);
+            res.json(userData);
         } catch (err) {
-            console.log(err);
             res.status(500).json({ message: "Internal server error" });
         }
     }
