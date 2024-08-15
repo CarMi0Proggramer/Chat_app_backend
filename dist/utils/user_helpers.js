@@ -1,6 +1,4 @@
-import type { User } from "../entities/User.js";
-
-export function extractUserData(user: User) {
+export function extractUserData(user) {
     return {
         name: user.name,
         email: user.email,
@@ -11,3 +9,4 @@ export function extractUserData(user: User) {
         sentMessages: user.sentMessages,
     };
 }
+//# sourceMappingURL=user_helpers.js.map

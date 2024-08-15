@@ -1,8 +1,7 @@
 import { AppDataSource } from "../data-source.js";
 import { User } from "../entities/User.js";
-
 export default class UserModel {
-    static async getByEmail(email: string) {
+    static async getByEmail(email) {
         const user = await AppDataSource.getRepository(User).findOne({
             where: {
                 email: email,
@@ -15,23 +14,19 @@ export default class UserModel {
         });
         return user;
     }
-
-    static async create(data: User) {
+    static async create(data) {
         const user = await this.getByEmail(data.email);
         if (user) {
             return false;
         }
-
         const newUser = await AppDataSource.getRepository(User).save(data);
         return newUser;
     }
-
-    static async update(email: string, data: object) {
+    static async update(email, data) {
         const user = await this.getByEmail(email);
         if (!user) {
             return false;
         }
-
         await AppDataSource.getRepository(User).update({ email }, data);
         const updatedUser = AppDataSource.getRepository(User).findOne({
             where: { id: user.id },
@@ -44,3 +39,4 @@ export default class UserModel {
         return updatedUser;
     }
 }
+//# sourceMappingURL=user.js.map
