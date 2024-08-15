@@ -7,6 +7,7 @@ import {
     Relation,
 } from "typeorm";
 import { User } from "./User.js";
+import { Contact } from "./Contact.js";
 
 @Entity()
 export class Message {
@@ -22,6 +23,6 @@ export class Message {
     @ManyToOne(() => User, (user) => user.sentMessages)
     sender: Relation<User>;
 
-    @ManyToOne(() => User, (user) => user.receivedMessages)
-    receiver: Relation<User>;
+    @ManyToOne(() => Contact, (contact) => contact.receivedMessages)
+    receiver: Relation<Contact>;
 }

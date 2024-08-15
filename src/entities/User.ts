@@ -6,6 +6,7 @@ import {
     Relation,
 } from "typeorm";
 import { Message } from "./Message.js";
+import { Contact } from "./Contact.js";
 
 @Entity()
 export class User {
@@ -36,6 +37,9 @@ export class User {
     @OneToMany(() => Message, (message) => message.sender)
     sentMessages: Relation<Message[]>;
 
-    @OneToMany(() => Message, (message) => message.receiver)
-    receivedMessages: Relation<Message[]>;
+    @OneToMany(() => Contact, (contact) => contact.user)
+    contacts: Relation<Contact[]>;
+
+    @OneToMany(() => Contact, (contact) => contact.contact)
+    contactOf: Relation<Contact[]>;
 }
