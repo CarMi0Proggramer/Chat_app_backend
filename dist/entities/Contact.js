@@ -19,13 +19,13 @@ __decorate([
 __decorate([
     ManyToOne(() => User, (user) => user.contacts, { onDelete: "CASCADE" }),
     __metadata("design:type", Object)
-], Contact.prototype, "user", void 0);
+], Contact.prototype, "userFrom", void 0);
 __decorate([
     ManyToOne(() => User, (user) => user.contactOf, { onDelete: "CASCADE" }),
     __metadata("design:type", Object)
-], Contact.prototype, "contact", void 0);
+], Contact.prototype, "userTo", void 0);
 __decorate([
-    OneToMany(() => Message, (message) => message.receiver),
+    OneToMany(() => Message, (message) => message.userTo),
     __metadata("design:type", Object)
 ], Contact.prototype, "receivedMessages", void 0);
 Contact = __decorate([

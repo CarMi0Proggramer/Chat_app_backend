@@ -27,11 +27,11 @@ __decorate([
 __decorate([
     ManyToOne(() => User, (user) => user.sentMessages),
     __metadata("design:type", Object)
-], Message.prototype, "sender", void 0);
+], Message.prototype, "userFrom", void 0);
 __decorate([
     ManyToOne(() => Contact, (contact) => contact.receivedMessages),
     __metadata("design:type", Object)
-], Message.prototype, "receiver", void 0);
+], Message.prototype, "userTo", void 0);
 Message = __decorate([
     Entity()
 ], Message);

@@ -9,7 +9,7 @@ const cookiesConfig = {
     maxAge: 3000 * 60 * 60,
     secure: process.env.NODE_ENV == "production",
 };
-export class AuthController {
+export default class AuthController {
     static async signUp(req, res) {
         const result = validateUser(req.body);
         if (!result.success) {

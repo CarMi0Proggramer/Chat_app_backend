@@ -43,15 +43,15 @@ __decorate([
     __metadata("design:type", Object)
 ], User.prototype, "configurations", void 0);
 __decorate([
-    OneToMany(() => Message, (message) => message.sender),
+    OneToMany(() => Message, (message) => message.userFrom),
     __metadata("design:type", Object)
 ], User.prototype, "sentMessages", void 0);
 __decorate([
-    OneToMany(() => Contact, (contact) => contact.user),
+    OneToMany(() => Contact, (contact) => contact.userFrom),
     __metadata("design:type", Object)
 ], User.prototype, "contacts", void 0);
 __decorate([
-    OneToMany(() => Contact, (contact) => contact.contact),
+    OneToMany(() => Contact, (contact) => contact.userTo),
     __metadata("design:type", Object)
 ], User.prototype, "contactOf", void 0);
 User = __decorate([

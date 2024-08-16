@@ -1,16 +1,17 @@
 import { AppDataSource } from "../data-source.js";
 import { User } from "../entities/User.js";
+const userExpectedRelations = {
+    sentMessages: true,
+    contacts: true,
+    contactOf: true,
+};
 export default class UserModel {
     static async getByEmail(email) {
         const user = await AppDataSource.getRepository(User).findOne({
             where: {
                 email: email,
             },
-            relations: {
-                sentMessages: true,
-                contacts: true,
-                contactOf: true,
-            },
+            relations: userExpectedRelations,
         });
         return user;
     }
@@ -30,11 +31,7 @@ export default class UserModel {
         await AppDataSource.getRepository(User).update({ email }, data);
         const updatedUser = AppDataSource.getRepository(User).findOne({
             where: { id: user.id },
-            relations: {
-                sentMessages: true,
-                contacts: true,
-                contactOf: true,
-            },
+            relations: userExpectedRelations,
         });
         return updatedUser;
     }

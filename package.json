@@ -9,6 +9,7 @@
         "build": "npx tsc",
         "start": "node dist/app.js",
         "typeorm": "typeorm-ts-node-esm",
+        "migrations": "npm run typeorm migration:run -- -d ./dist/data-source.js",
         "test": "jest"
     },
     "keywords": [],
