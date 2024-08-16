@@ -4,6 +4,6 @@ import ContactController from "../controllers/contacts.js";
 const contactsRouter = Router();
 
 contactsRouter.get("/", ContactController.getAll);
-contactsRouter.post("/add-contact", ContactController.add);
+contactsRouter.post("/", ContactController.add);
 
 export default contactsRouter;

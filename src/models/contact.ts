@@ -9,13 +9,16 @@ const contactExpectedRelations: FindOptionsRelations<Contact> = {
     receivedMessages: true,
 };
 export default class ContactModel {
-    static async getAll(userFrom: User) {
+    static async getAll(email: string) {
         const contacts = await AppDataSource.getRepository(Contact).find({
             where: {
-                userFrom: userFrom,
+                userFrom: {
+                    email: email,
+                },
             },
             relations: contactExpectedRelations,
         });
+        return contacts;
     }
 
     static async create(userFrom: User, userTo: User) {

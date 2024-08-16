@@ -15,14 +15,15 @@ export default class ContactController {
             if (!email) {
                 return res.status(403).json({ message: "Access unauthorized" });
             }
+
             const userFrom = await UserModel.getByEmail(email);
             const userTo = await UserModel.getByEmail(result.data.email);
             if (!userFrom || !userTo) {
                 return res.status(404).json({ message: "User not found" });
             }
 
-            await ContactModel.create(userFrom, userTo);
-            res.json({ message: "Success" });
+            const contact = await ContactModel.create(userFrom, userTo);
+            res.json(contact);
         } catch (err) {
             res.status(500).json({ message: "Internal server error" });
         }
@@ -35,8 +36,7 @@ export default class ContactController {
                 return res.status(403).json({ message: "Access unauthorized" });
             }
 
-            const userFrom = await UserModel.getByEmail(email);
-            const contacts = await ContactModel.getAll(userFrom);
+            const contacts = await ContactModel.getAll(email);
             res.json(contacts);
         } catch (err) {
             res.status(500).json({ message: "Internal server error" });
