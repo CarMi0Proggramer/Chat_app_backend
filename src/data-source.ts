@@ -1,20 +1,26 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 
-let host: string, username: string, password: string, database: string;
+let host: string,
+    port: number,
+    username: string,
+    password: string,
+    database: string;
 let entities: string;
 let migrations: string;
 
 if (process.env.NODE_ENV == "production") {
-    host = "postgres.railway.internal";
+    host = "roundhouse.proxy.rlwy.net";
+    port = 17590;
     username = "postgres";
-    password = "EPXwXlCVIomecrIJDnQRTQZgrDQYxeKo";
+    password = "hmmMQNCTRuxEYoyZmvLduljUyWsAUglg";
     database = "railway";
 
     entities = "./dist/entities/*.js";
     migrations = "./dist/migrations/*.js";
 } else {
     host = "localhost";
+    port = 5432;
     username = "carlos";
     password = "chat_db_password";
     database = "chat_db";
@@ -26,7 +32,7 @@ if (process.env.NODE_ENV == "production") {
 export const AppDataSource = new DataSource({
     type: "postgres",
     host: host,
-    port: 5432,
+    port: port,
     username: username,
     password: password,
     database: database,
