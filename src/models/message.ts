@@ -7,7 +7,7 @@ const messageExpectedRelations: FindOptionsRelations<Message> = {
     userTo: true,
 };
 export default class MessageModel {
-    static async getAllMessagesFromOneUser(email: string) {
+    static async getAll(email: string) {
         const messages = await AppDataSource.getRepository(Message).find({
             where: {
                 userFrom: {

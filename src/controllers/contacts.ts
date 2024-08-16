@@ -27,4 +27,19 @@ export default class ContactController {
             res.status(500).json({ message: "Internal server error" });
         }
     }
+
+    static async getAll(req: Request, res: Response) {
+        try {
+            const { email } = req.body.session.user;
+            if (!email) {
+                return res.status(403).json({ message: "Access unauthorized" });
+            }
+
+            const userFrom = await UserModel.getByEmail(email);
+            const contacts = await ContactModel.getAll(userFrom);
+            res.json(contacts);
+        } catch (err) {
+            res.status(500).json({ message: "Internal server error" });
+        }
+    }
 }

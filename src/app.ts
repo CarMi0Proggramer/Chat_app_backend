@@ -6,6 +6,8 @@ import { corsMiddleware } from "./middlewares/cors.js";
 import { verifyUserToken } from "./middlewares/verify_user_token.js";
 import usersRouter from "./routes/users.js";
 import authRouter from "./routes/auth.js";
+import messagesRouter from "./routes/messages.js";
+import contactsRouter from "./routes/contacts.js";
 
 dotenv.config();
 AppDataSource.initialize()
@@ -28,6 +30,8 @@ app.use(verifyUserToken);
 
 app.use("/auth", authRouter);
 app.use("/users", usersRouter);
+app.use("/messages", messagesRouter);
+app.use("/contacts", contactsRouter);
 
 app.listen(port, () => {
     console.log("App listening on port ", port);

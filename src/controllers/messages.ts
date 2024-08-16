@@ -9,7 +9,7 @@ export default class MessageController {
                 return res.status(403).json({ message: "Access unauthorized" });
             }
 
-            const messages = await MessageModel.getAllMessagesFromOneUser(
+            const messages = await MessageModel.getAll(
                 email
             );
             res.json(messages);
