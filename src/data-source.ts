@@ -8,18 +8,18 @@ const railway_database = "railway";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: railway_host,
+    host: "localhost",
     port: 5432,
-    username: railway_username,
-    password: railway_password,
-    database: railway_database,
+    username: "carlos",
+    password: "chat_db_password",
+    database: "chat_db",
     entities: [
         process.env.NODE_ENV == "production"
             ? "./dist/entities/*.js"
             : "./src/entities/*.ts",
     ],
     logging: true,
-    synchronize: true,
+    synchronize: false,
     migrations: [
         process.env.NODE_ENV == "production"
             ? "./dist/migrations/*.js"

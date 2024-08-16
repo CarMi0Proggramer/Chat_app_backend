@@ -34,12 +34,12 @@ export class User {
     })
     configurations: JSON;
 
-    @OneToMany(() => Message, (message) => message.sender)
+    @OneToMany(() => Message, (message) => message.userFrom)
     sentMessages: Relation<Message[]>;
 
-    @OneToMany(() => Contact, (contact) => contact.user)
+    @OneToMany(() => Contact, (contact) => contact.userFrom)
     contacts: Relation<Contact[]>;
 
-    @OneToMany(() => Contact, (contact) => contact.contact)
+    @OneToMany(() => Contact, (contact) => contact.userTo)
     contactOf: Relation<Contact[]>;
 }

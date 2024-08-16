@@ -21,8 +21,8 @@ export class Message {
     date: Date;
 
     @ManyToOne(() => User, (user) => user.sentMessages)
-    sender: Relation<User>;
+    userFrom: Relation<User>;
 
     @ManyToOne(() => Contact, (contact) => contact.receivedMessages)
-    receiver: Relation<Contact>;
+    userTo: Relation<Contact>;
 }

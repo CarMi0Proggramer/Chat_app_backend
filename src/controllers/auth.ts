@@ -12,7 +12,7 @@ const cookiesConfig: CookieOptions = {
     secure: process.env.NODE_ENV == "production",
 };
 
-export class AuthController {
+export default class AuthController {
     static async signUp(req: Request, res: Response) {
         const result = validateUser(req.body);
         if (!result.success) {

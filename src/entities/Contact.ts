@@ -14,11 +14,11 @@ export class Contact {
     id: string;
 
     @ManyToOne(() => User, (user) => user.contacts, { onDelete: "CASCADE" })
-    user: Relation<User>;
+    userFrom: Relation<User>;
 
     @ManyToOne(() => User, (user) => user.contactOf, { onDelete: "CASCADE" })
-    contact: Relation<User>;
+    userTo: Relation<User>;
 
-    @OneToMany(() => Message, (message) => message.receiver)
+    @OneToMany(() => Message, (message) => message.userTo)
     receivedMessages: Relation<Message[]>;
 }
