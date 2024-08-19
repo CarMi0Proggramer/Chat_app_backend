@@ -5,6 +5,7 @@ export default class MessageController {
     static async getAll(req: Request, res: Response) {
         try {
             const user = req.body.session.user;
+            console.log(user);
             if (!user) {
                 return res.status(403).json({ message: "Access unauthorized" });
             }

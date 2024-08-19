@@ -8,7 +8,7 @@ test("It should return 403 if there is no token", async () => {
     expect(res.status).toBe(403);
 });
 
-test("It should return status code", async () => {
+test("It should return data as json", async () => {
     const res = await api.get("/contacts").set("access_token", token);
     expect(res.status).toBe(200);
     expect(res.header).toContain(/application\/json/);
