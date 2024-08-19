@@ -19,11 +19,26 @@ export default class ContactModel {
         return contacts;
     }
 
+    static async getById(id: string) {
+        const contact = await AppDataSource.getRepository(Contact).findOne({
+            where: { id },
+            relations: contactExpectedRelations,
+        });
+        return contact;
+    }
+
     static async create(userFrom: User, userTo: User) {
-        const contact = await AppDataSource.getRepository(Contact).save({
+        const repository = AppDataSource.getRepository(Contact);
+
+        const contact = await repository.save({
             userFrom: userFrom,
             userTo: userTo,
         });
+        await repository.save({
+            userFrom: userTo,
+            userTo: userFrom,
+        });
+
         return contact;
     }
 }
