@@ -12,9 +12,7 @@ export default class ContactModel {
     static async getAll(email: string) {
         const contacts = await AppDataSource.getRepository(Contact).find({
             where: {
-                userFrom: {
-                    email: email,
-                },
+                userFrom: { email },
             },
             relations: contactExpectedRelations,
         });

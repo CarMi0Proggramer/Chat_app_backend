@@ -12,7 +12,8 @@
         "migrations:gen": "npm run typeorm migration:generate -- -d ./dist/data-source.js",
         "migrations": "npm run typeorm migration:run -- -d ./dist/data-source.js",
         "migrations:dev": "npm run typeorm migration:run -- -d ./src/data-source.ts",
-        "test": "cross-env NODE_ENV=test jest"
+        "test": "cross-env NODE_ENV=test jest",
+        "test:watch": "npm run test -- --watch"
     },
     "keywords": [],
     "author": "",
@@ -38,6 +39,7 @@
         "@types/jest": "^29.5.12",
         "@types/jsonwebtoken": "^9.0.6",
         "@types/node": "^16.11.10",
+        "@types/supertest": "^6.0.2",
         "jest": "^29.7.0",
         "nodemon": "^3.1.4",
         "supertest": "^7.0.0",

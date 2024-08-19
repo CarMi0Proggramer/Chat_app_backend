@@ -18,7 +18,7 @@ AppDataSource.initialize()
         console.log("Error connecting with the database: ", err);
     });
 
-const app = express();
+export const app = express();
 app.disable("x-powered-by");
 
 const port = process.env.PORT ?? 3000;
@@ -33,6 +33,6 @@ app.use("/users", usersRouter);
 app.use("/messages", messagesRouter);
 app.use("/contacts", contactsRouter);
 
-app.listen(port, () => {
+export const server = app.listen(port, () => {
     console.log("App listening on port ", port);
 });

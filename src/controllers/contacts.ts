@@ -11,12 +11,12 @@ export default class ContactController {
         }
 
         try {
-            const { email } = req.body.session.user;
-            if (!email) {
+            const user = req.body.session.user;
+            if (!user) {
                 return res.status(403).json({ message: "Access unauthorized" });
             }
 
-            const userFrom = await UserModel.getByEmail(email);
+            const userFrom = await UserModel.getByEmail(user.email);
             const userTo = await UserModel.getByEmail(result.data.email);
             if (!userFrom || !userTo) {
                 return res.status(404).json({ message: "User not found" });
@@ -31,12 +31,12 @@ export default class ContactController {
 
     static async getAll(req: Request, res: Response) {
         try {
-            const { email } = req.body.session.user;
-            if (!email) {
+            const user = req.body.session.user;
+            if (!user) {
                 return res.status(403).json({ message: "Access unauthorized" });
             }
 
-            const contacts = await ContactModel.getAll(email);
+            const contacts = await ContactModel.getAll(user.email);
             res.json(contacts);
         } catch (err) {
             res.status(500).json({ message: "Internal server error" });
