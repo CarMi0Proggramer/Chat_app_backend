@@ -65,4 +65,10 @@ export default class AuthController {
             res.status(500).json({ message: "Internal server error" });
         }
     }
+
+    static async logOut(req: Request, res: Response) {
+        res.clearCookie("access_token").json({
+            message: "Logged out successfully",
+        });
+    }
 }
