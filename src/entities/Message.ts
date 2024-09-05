@@ -9,6 +9,11 @@ import {
 import { User } from "./User.js";
 import { Contact } from "./Contact.js";
 
+enum Status {
+    READ = "READ",
+    UNREAD = "UNREAD",
+}
+
 @Entity()
 export class Message {
     @PrimaryGeneratedColumn("uuid")
@@ -16,6 +21,9 @@ export class Message {
 
     @Column()
     content: string;
+
+    @Column({ type: "enum", enum: Status, default: Status.UNREAD })
+    status: Status;
 
     @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     date: Date;
